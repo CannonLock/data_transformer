@@ -17,17 +17,20 @@ runs:
       with:
         python-version: '3.x'
 
-    - shell: bash
+    - name: Run the main program
+      shell: bash
       run: |
         pip3 install -r ${{ github.action_path }}/requirements.txt
         python3 ${{ github.action_path }}/main.py ${{ github.action_path }}/${{ inputs.config_path }}
 
     - name: Initialize GH User
+      shell: bash
       run: |
         git config user.name "GitHub Actions"
         git config user.email "actions@github.com"
 
     - name: Push the new data files
+      shell: bash
       run: |
         git add .
         git commit -m "Auto Data Creation"
