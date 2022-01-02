@@ -21,7 +21,7 @@ runs:
       shell: bash
       run: |
         pip3 install -r ${{ github.action_path }}/requirements.txt
-        python3 ${{ github.action_path }}/main.py ${{ github.action_path }}/${{ inputs.config_path }}
+        python3 ${{ github.action_path }}/main.py ${{ inputs.config_path }}
 
     - name: Initialize GH User
       shell: bash
