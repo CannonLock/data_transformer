@@ -1,0 +1,28 @@
+
+name: Data Transformer
+description: Transforms your data to a new format
+
+inputs:
+  config_path:
+    description: Path to the config
+    default: .data_transformer.yml
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v2
+
+    - name: Initialize GH User
+      run: |
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - shell: bash
+      run: |
+        pip3 install -r ${{ github.action_path }}/requirements.txt
+        python3 ${{ github.action_path }}/main.py ${{ github.action_path }}/${{ inputs.config_path }}

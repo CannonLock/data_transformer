@@ -1,0 +1,4 @@
+original_file_path.ext:
+  - conversion_path.json
+  - conversion_path.csv
+  - conversion_path.tsv
