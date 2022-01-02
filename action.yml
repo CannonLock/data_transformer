@@ -12,11 +12,6 @@ runs:
   steps:
     - uses: actions/checkout@v2
 
-    - name: Initialize GH User
-      run: |
-        git config user.name "GitHub Actions"
-        git config user.email "actions@github.com"
-
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
@@ -26,3 +21,14 @@ runs:
       run: |
         pip3 install -r ${{ github.action_path }}/requirements.txt
         python3 ${{ github.action_path }}/main.py ${{ github.action_path }}/${{ inputs.config_path }}
+
+    - name: Initialize GH User
+      run: |
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
+
+    - name: Push the new data files
+      run: |
+        git add .
+        git commit -m "Auto Data Creation"
+        git push
